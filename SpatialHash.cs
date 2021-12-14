@@ -201,7 +201,7 @@ public class SpatialHash
     /// <summary>Returns all colliders an entity shares a bucket with (with no repeat and self not returned)</summary>
     /// <param name="collider">Target collider</param>
     /// <param name="radius">Amount of additional cells to check in every direction</param>
-    public List<IHashable> FindNearbyColliders(IHashable collider, int radius)
+    public List<IHashable> FindNearbyColliders(IHashable collider, int radius = 0)
     {
         /***
          * Clear previous query to save memory from a new List allocation
@@ -215,6 +215,7 @@ public class SpatialHash
 
             int startX = Math.Max(0, colliderHashBounds.Item1.X - radius);
             int startY = Math.Max(0, colliderHashBounds.Item1.Y - radius);
+
             int endX = Math.Min(Width - 1, colliderHashBounds.Item2.X + radius);
             int endY = Math.Min(Height - 1, colliderHashBounds.Item2.Y + radius);
 
