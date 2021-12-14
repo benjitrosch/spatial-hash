@@ -77,7 +77,7 @@ public struct CellIndex
 public class SpatialHash
 {
     /// <summary>Multidimensional array as [x, y] to represent grid position</summary>
-    public List<IHashable>[,] Grid;
+    public readonly List<IHashable>[,] Grid;
 
     /// <summary>Cached previous query result
     /// to prevent allocating new list on every hash query.
@@ -92,7 +92,7 @@ public class SpatialHash
     public int Height;
 
     /// <summary>Size represented by pixels</summary>
-    public int CellSize;
+    public readonly int CellSize;
 
     public SpatialHash(int width, int height, int cellSize)
     {
