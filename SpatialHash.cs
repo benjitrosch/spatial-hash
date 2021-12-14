@@ -132,6 +132,7 @@ public class SpatialHash
         return new CellIndex(clampedX, clampedY);
     }
 
+    /// <summary>Add a specified collider to every bucket on the grid between it's top left and bottom right bounds</summary>
     public void Insert(IHashable collider, Vector2 topLeftBounds, Vector2 bottomRightBounds)
     {
         CellIndex startCoordinates = GetCellIndex(topLeftBounds);
@@ -152,6 +153,7 @@ public class SpatialHash
         }
     }
 
+    /// <summary>Remove a collider from every bucket it belongs to and nullify the key</summary>
     public void Remove(IHashable collider)
     {
         if (collider.RegisteredHashBounds != null)
@@ -177,6 +179,7 @@ public class SpatialHash
         }
     }
 
+    /// <summary>Update a collider (and it's buckets) by removing and then re-inserting it</summary>
     public void UpdateCollider(IHashable collider, Vector2 topLeftBounds, Vector2 bottomRightBounds)
     {
         /***
@@ -190,6 +193,7 @@ public class SpatialHash
         }
     }
 
+    /// <summary>Returns whether or not a collider has moved enough to change cells</summary>
     public bool ColliderHasMovedCells(IHashable collider, Vector2 topLeftBounds, Vector2 bottomRightBounds)
     {
         CellIndex startCoordinates = GetCellIndex(topLeftBounds);
@@ -198,7 +202,7 @@ public class SpatialHash
         return collider.RegisteredHashBounds != (startCoordinates, endCoordinates);
     }
 
-    /// <summary>Returns all colliders an entity shares a bucket with (with no repeat and self not returned)</summary>
+    /// <summary>Returns all colliders an entity shares a bucket with (no repeats and self not returned)</summary>
     /// <param name="collider">Target collider</param>
     /// <param name="radius">Amount of additional cells to check in every direction</param>
     public List<IHashable> FindNearbyColliders(IHashable collider, int radius = 0)
